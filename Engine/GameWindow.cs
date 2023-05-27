@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
+using VoodooFramework.Engine.Input;
 
 namespace VoodooFramework.Engine;
 
@@ -42,9 +42,11 @@ public class GameWindow : Game
     protected override void Update(GameTime gameTime)
     {
         //Checking for Exit:
-        if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed ||
-            Keyboard.GetState().IsKeyDown(Keys.Escape))
+        if (InputManager.IsExitRequested())
             Exit();
+        
+        //Updating the input system:
+        InputManager.Update(gameTime);
     }
 
     protected override void Draw(GameTime gameTime)
@@ -55,4 +57,7 @@ public class GameWindow : Game
     
     //Public Properties:
     public Color ClearScreenColor { get; set; } = Color.Black;
+    
+    //Public Managers:
+    public InputManager InputManager { get; } = new();
 }
