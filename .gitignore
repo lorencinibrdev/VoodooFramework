@@ -1,0 +1,10 @@
+bin/
+obj/
+/packages/
+riderModule.iml
+/_ReSharper.Caches/
+.ideia/
+/.idea/.idea.VoodooFramework/.idea/.gitignore
+/.idea/.idea.VoodooFramework/.idea/encodings.xml
+/.idea/.idea.VoodooFramework/.idea/indexLayout.xml
+/.idea/.idea.VoodooFramework/.idea/vcs.xml
