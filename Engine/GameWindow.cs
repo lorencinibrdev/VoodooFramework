@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using VoodooFramework.Engine.GameStates;
 using VoodooFramework.Engine.Input;
 
 namespace VoodooFramework.Engine;
@@ -47,17 +48,25 @@ public class GameWindow : Game
         
         //Updating the input system:
         InputManager.Update(gameTime);
+        GameStateManager.HandleEvents(InputManager);
+        
+        //Updating the game state:
+        GameStateManager.Update(gameTime);
     }
 
     protected override void Draw(GameTime gameTime)
     {
         //Clearing the screen:
         GraphicsDevice.Clear(ClearScreenColor);
+        
+        //Drawing the game state:
+        GameStateManager.Draw(_spriteBatch, gameTime);
     }
     
     //Public Properties:
     public Color ClearScreenColor { get; set; } = Color.Black;
     
     //Public Managers:
+    public GameStateManager GameStateManager { get; } = new();
     public InputManager InputManager { get; } = new();
 }
